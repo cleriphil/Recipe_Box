@@ -1,0 +1,37 @@
+
+<% if @from_index %>
+
+  <form action="/recipes" method="post">
+
+  <label for='category_id'>Choose a Category:</label>
+  <select id='category_id' name='category_id' type='text'>
+      <% @all_categories.each do |category| %>
+        <option value='<%= category.id %>'><%= category.name %></option>
+        <% end %>
+  </select>
+
+  <label for="name">Name:</label>
+  <input id="name" name="name" type="text">
+
+  <label for="instructions">Instructions:</label>
+  <input id="instructions" name="instructions" type="text">
+
+  <button type="submit">Add Category</button>
+</form>
+
+<% else %>
+
+
+  <form action="/categories/<%= @category.id %>/recipes" method="post">
+
+
+  <label for="name">Name:</label>
+  <input id="name" name="name" type="text">
+
+  <label for="instructions">Instructions:</label>
+  <input id="instructions" name="instructions" type="text">
+
+  <button type="submit">Add Category</button>
+</form>
+
+<% end %>
