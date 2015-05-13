@@ -1,0 +1,39 @@
+require('spec_helper')
+
+describe(Recipe) do
+  it('returns the category it belongs to') do
+    category = Category.create({:name => "Indian"})
+    recipe = Recipe.create({:name => "Tiki Masala", :rating => 0, :category_id => category.id })
+    expect(recipe.category()).to(eq(category))
+  end
+  it('returns the ingredients in a recipe') do
+    recipe = Recipe.create({:name => "Tiki Masala", :rating => 0, :ingredient_ids => [] })
+    ingredient1 = Ingredient.create({:name => "rice", :recipe_ids => [] }) # multiply ids refer to the join table, not the ingredient table
+    ingredient2 = Ingredient.create({:name => "chicken", :recipe_ids => [] }) # recipe_ids must be empty, because the push on the line below links the recipe id with the ingredient id in the join table
+    recipe.ingredients.push([ingredient1, ingredient2])
+    # recipe.ingredients.push(ingredient2)
+    binding.pry
+    expect(recipe.ingredients()).to(eq([ingredient1, ingredient2]))
+
+#this info is stored in our join table twice
+
+  end
+end
+
+
+
+
+
+
+
+#
+# #
+# # recipe.ingredients
+# #
+#
+# ingredient3 = Ingredient.create({:name => "pepper", })
+# Recipe.new({:ingredient_ids => [ingredient1.id(), ingredient2.id()]  }) # a recipe with multiple ingredients
+#
+# ingredient3.recipes.new() # add a new recipe based on the ingredient
+#
+# recipe.ingredients.push(new_ingredient) #pushes to the join table
