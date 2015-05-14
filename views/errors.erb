@@ -1,0 +1,26 @@
+<h3>Oops there were some errors:</h3>
+<% if @for_category %>
+<ul>
+  <% @category.errors().full_messages().each do |message| %>
+  <li><%= message %></li>
+  <% end %>
+</ul>
+<h5><a href='/' > Return to main page to try again</a></h5>
+
+
+<% elsif @for_recipe %>
+<ul>
+  <% @recipe.errors().full_messages().each do |message| %>
+  <li><%= message %></li>
+  <% end %>
+</ul>
+<h5><a href='/' > Return to main page to try again</a></h5>
+
+<% else %>
+<ul>
+  <% @ingredient.errors().full_messages().each do |message| %>
+  <li><%= message %></li>
+  <% end %>
+</ul>
+<h5><a href='/' > Return to main page to try again</a></h5>
+<% end %>

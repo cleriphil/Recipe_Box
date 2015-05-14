@@ -1,1 +1,41 @@
 <h2><%= @recipe.name %></h2>
+
+
+<h4>Instructions: <%= @recipe.instructions %></h4>
+
+<h4>Ingredients:</h4>
+
+<% if @recipe.ingredients.any?() %>
+  <ul>
+    <% @recipe.ingredients.each do |ingredient| %>
+      <li> <%= ingredient.name %></li>
+      <% end %>
+</ul>
+
+<% else %>
+  <p>There are no ingredients, yet.</p>
+<% end %>
+
+<% if @recipe.rating.nil? %>
+    <p>Not Rated</p>
+    <p>Rate <%= @recipe.name %>...</p>
+<% else %>
+    <h4>Rating: <%= @recipe.rating %></h4>
+    <p>Edit your rating...</p>
+<% end %>
+
+<form action='/categories/<%= @category.id %>/recipes/<%= @recipe.id %>' method='post'>
+  <input name='_method' type='hidden' value='patch'>
+
+  <label for='rating'>Rating:</label>
+  <select id='rating' name='rating' type='number'>
+      <% 10.times do |time| %>
+      <option><%= time + 1 %></option>
+      <% end %>
+  </select>
+  <button class='btn-default'>Submit</button>
+</form>
+
+
+<a href='/categories/<%= @category.id %>/recipes/<%= @recipe.id %>/ingredients/new'>Add an ingredient</a>
+<h5><a href='/' > Return Home</a></h5>

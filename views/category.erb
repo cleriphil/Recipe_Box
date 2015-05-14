@@ -12,6 +12,13 @@
       <p>There are no recipes, yet.</p>
   <% end %>
 
+<form action='/categories/<%= @category.id %>' method='post'>
+  <input name='_method' type='hidden' value='delete'>
+  <button id='delete_category' class='btn-danger'>Delete Category</button>
+</form>
+
 
 
 <a href='/categories/<%= @category.id %>/recipes/new'>Add a recipe</a>
+
+<h5><a href='/' > Return Home</a></h5>

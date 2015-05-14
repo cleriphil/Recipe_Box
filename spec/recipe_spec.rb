@@ -1,11 +1,9 @@
 require('spec_helper')
 
 describe(Recipe) do
-  # it('returns the category it belongs to') do #if it were a one to many relationship
-  #   category = Category.create({:name => "Indian"})
-  #   recipe = Recipe.create({:name => "Tiki Masala", :rating => 0, :category_id => category.id })
-  #   expect(recipe.category()).to(eq(category))
-  # end
+  it {should have_and_belong_to_many(:ingredients)}
+  it {should have_and_belong_to_many(:categories)}
+  
   it('returns the ingredients in a recipe') do
     recipe = Recipe.create({:name => "Tiki Masala", :rating => 0, :ingredient_ids => [] })
     ingredient1 = Ingredient.create({:name => "rice"}) # multiply ids refer to the join table, not the ingredient table
@@ -38,6 +36,7 @@ describe(Recipe) do
     recipe.ingredients.destroy(ingredient2)
     expect(recipe.ingredients()).to(eq([ingredient1]))
   end
+
 end
 
 

@@ -24,4 +24,8 @@ describe(Ingredient) do
     ingredient1.recipes.destroy (recipe2)
     expect(ingredient1.recipes).to(eq([recipe1]))
   end
+   it {should have_and_belong_to_many(:recipes)}
+   it {should validate_presence_of(:name) }
+   it {should validate_length_of(:name).is_at_most(20)}
+  #  it {should validate_format_of(:name, /\A[-a-z]+\Z/)} #does not work 
 end

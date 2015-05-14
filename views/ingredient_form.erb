@@ -1,0 +1,10 @@
+<h2>Add ingredient to <%= @recipe.name %></h2>
+
+<form action="/categories/<%= @category.id %>/recipes/<%= @recipe.id %>/ingredients/new" method="post">
+
+<label for="name">Name:</label>
+<input id="name" name="name" type="text">
+
+<button type="submit">Add Ingredient</button>
+</form>
+<h5><a href='/' > Return Home</a></h5>
