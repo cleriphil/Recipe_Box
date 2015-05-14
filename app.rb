@@ -49,6 +49,11 @@ post('/categories/:category_id/recipes') do
   end
 end
 
+get('/recipes') do
+  @recipes = Recipe.order(rating: :desc) #returns all the recipes sorted by rating (instead of using the all method)
+  erb(:recipes)
+end
+
 
 get('/recipes/new') do
   @all_categories = Category.all()
@@ -56,10 +61,7 @@ get('/recipes/new') do
   erb(:recipe_form)
 end
 
-# get('/recipes/:id') do
-#   @recipe = Recipe.find(params.fetch('id').to_i)
-#   erb(:recipe)
-# end
+
 
 post('/recipes') do
   @for_recipe = true
@@ -80,6 +82,13 @@ get('/categories/:category_id/recipes/:id') do
   @recipe = Recipe.find(params.fetch('id').to_i)
   erb(:recipe)
 end
+
+get('/recipes/:id') do
+  @recipe = Recipe.find(params.fetch('id').to_i)
+  @from_ratings = true
+  erb(:recipe)
+end
+
 
 get('/categories/:category_id/recipes/:recipe_id/ingredients/new') do
   @category = Category.find(params.fetch('category_id').to_i)
